@@ -67,3 +67,6 @@
 [submodule "sites/all/modules/commerce_addressbook"]
 	path = sites/all/modules/commerce_addressbook
 	url = git://git.drupal.org/project/commerce_addressbook.git
+[submodule "sites/all/modules/logintoboggan"]
+	path = sites/all/modules/logintoboggan
+	url = git://git.drupal.org/project/logintoboggan.git
