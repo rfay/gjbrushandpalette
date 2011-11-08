@@ -73,3 +73,9 @@
 [submodule "sites/all/modules/nodequeue"]
 	path = sites/all/modules/nodequeue
 	url = git://git.drupal.org/project/nodequeue.git
+[submodule "sites/all/modules/wysiwyg"]
+	path = sites/all/modules/wysiwyg
+	url = git://git.drupal.org/project/wysiwyg.git
+[submodule "sites/all/modules/libraries"]
+	path = sites/all/modules/libraries
+	url = git://git.drupal.org/project/libraries.git
