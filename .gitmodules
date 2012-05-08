@@ -79,3 +79,6 @@
 [submodule "sites/all/modules/libraries"]
 	path = sites/all/modules/libraries
 	url = git://git.drupal.org/project/libraries.git
+[submodule "sites/all/modules/webform"]
+	path = sites/all/modules/webform
+	url = git://git.drupal.org/project/webform.git
