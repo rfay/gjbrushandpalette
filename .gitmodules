@@ -82,3 +82,24 @@
 [submodule "sites/all/modules/webform"]
 	path = sites/all/modules/webform
 	url = git://git.drupal.org/project/webform.git
+[submodule "sites/all/modules/css_injector"]
+	path = sites/all/modules/css_injector
+	url = git://git.drupal.org/project/css_injector.git
+[submodule "sites/all/modules/views_datasource"]
+	path = sites/all/modules/views_datasource
+	url = git://git.drupal.org/project/views_datasource.git
+[submodule "sites/all/modules/colorbox"]
+	path = sites/all/modules/colorbox
+	url = git://git.drupal.org/project/colorbox.git
+[submodule "sites/all/libraries/colorbox"]
+	path = sites/all/libraries/colorbox
+	url = git://github.com/jackmoore/colorbox.git
+[submodule "sites/all/libraries/jquery.cycle"]
+	path = sites/all/libraries/jquery.cycle
+	url = http://github.com/malsup/cycle.git
+[submodule "sites/all/modules/views_slideshow"]
+	path = sites/all/modules/views_slideshow
+	url = git://git.drupal.org/project/views_slideshow.git
+[submodule "sites/all/modules/select_or_other"]
+	path = sites/all/modules/select_or_other
+	url = git://git.drupal.org/project/select_or_other.git
