@@ -139,3 +139,9 @@
 [submodule "sites/all/modules/git_deploy"]
 	path = sites/all/modules/git_deploy
 	url = git://git.drupal.org/project/git_deploy.git
+[submodule "sites/all/modules/simplenews"]
+	path = sites/all/modules/simplenews
+	url = git://git.drupal.org/project/simplenews.git
+[submodule "sites/all/modules/reroute_email"]
+	path = sites/all/modules/reroute_email
+	url = git://git.drupal.org/project/reroute_email.git
