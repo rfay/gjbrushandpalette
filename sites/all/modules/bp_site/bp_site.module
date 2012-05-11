@@ -93,7 +93,7 @@ function bp_site_pre_render_field($element) {
 
 /**
  * Add a membership fee component.
- * 
+ *
  * @return array
  */
 function bp_site_commerce_price_component_type_info() {
