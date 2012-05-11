@@ -103,3 +103,36 @@
 [submodule "sites/all/modules/select_or_other"]
 	path = sites/all/modules/select_or_other
 	url = git://git.drupal.org/project/select_or_other.git
+[submodule "sites/all/modules/field_group"]
+	path = sites/all/modules/field_group
+	url = git://git.drupal.org/project/field_group.git
+[submodule "sites/all/modules/link"]
+	path = sites/all/modules/link
+	url = git://git.drupal.org/project/link.git
+[submodule "sites/all/modules/phone"]
+	path = sites/all/modules/phone
+	url = git://git.drupal.org/project/phone.git
+[submodule "modules/job_scheduler"]
+	path = modules/job_scheduler
+	url = git://git.drupal.org/project/job_scheduler.git
+[submodule "sites/all/modules/commerce_custom_product"]
+	path = sites/all/modules/commerce_custom_product
+	url = git://git.drupal.org/project/commerce_custom_product.git
+[submodule "sites/all/modules/commerce_fieldgroup_panes"]
+	path = sites/all/modules/commerce_fieldgroup_panes
+	url = git://git.drupal.org/project/commerce_fieldgroup_panes.git
+[submodule "sites/all/modules/features"]
+	path = sites/all/modules/features
+	url = git://git.drupal.org/project/features.git
+[submodule "sites/all/modules/feeds"]
+	path = sites/all/modules/feeds
+	url = git://git.drupal.org/project/feeds.git
+[submodule "sites/all/modules/feeds_tamper"]
+	path = sites/all/modules/feeds_tamper
+	url = git://git.drupal.org/project/feeds_tamper.git
+[submodule "sites/all/modules/field_collection"]
+	path = sites/all/modules/field_collection
+	url = git://git.drupal.org/project/field_collection.git
+[submodule "sites/all/modules/job_scheduler"]
+	path = sites/all/modules/job_scheduler
+	url = git://git.drupal.org/project/job_scheduler.git

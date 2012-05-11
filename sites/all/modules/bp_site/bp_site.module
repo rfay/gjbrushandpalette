@@ -1,0 +1,107 @@
+<?php
+
+
+  /**
+   * @file
+   * Site helpers for gjbrushandpalette.org
+   *
+   */
+
+  /**
+   * Implements hook_form_FORMID_alter().
+   *
+   * Alter the show_registration_node_form to hide the country field.
+   */
+  function bp_site_form_show_registration_node_form_alter(&$form, &$form_state)
+  {
+    $form['field_entrant_address']['und'][0]['country']['#access'] = FALSE;
+  }
+
+
+
+  /**
+   * Implements hook_field_formatter_info().
+   */
+  function bp_site_field_formatter_info_alter(&$info)
+  {
+    $info['field_collection_field_simple'] = array(
+      'label' => t('Simple text representation of field'),
+      'field types' => array('field_collection'),
+      'settings' => array(),
+      'module' => 'bp_site',
+    );
+
+  }
+
+
+  /**
+   * Implements hook_field_formatter_view().
+   *
+   * Attempts to provide a plain text view of the field_collection for use in a CSV.
+   * Does nothing but provide a #suffix for each of the field children.
+   */
+  function bp_site_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display)
+  {
+    $element = array();
+    $settings = $display['settings'];
+
+    switch ($display['type']) {
+
+      case 'field_collection_field_simple':
+
+        $view_mode = !empty($display['settings']['view_mode']) ? $display['settings']['view_mode'] : 'full';
+        foreach ($items as $delta => $item) {
+          if ($field_collection = field_collection_field_get_entity($item)) {
+            $element[$delta]['entity'] = $field_collection->view($view_mode);
+            foreach (element_children($element[$delta]['entity']['field_collection_item']) as $subitem) {
+              foreach (element_children($element[$delta]['entity']['field_collection_item'][$subitem]) as $field) {
+                $element[$delta]['entity']['field_collection_item'][$subitem][$field]['#pre_render'][] = 'bp_site_pre_render_field';
+
+              }
+            }
+          }
+        }
+        break;
+
+    }
+
+    return $element;
+  }
+
+/**
+ * Pre_render callback intended to change subfields so they can be output as csv
+ *
+ * @param $element
+ */
+function bp_site_pre_render_field($element) {
+  if ($element['#title'] == 'Artwork Title') {
+    $element['#title'] = 'Title';
+  }
+
+  if ($element['#title'] != 'Price $') {
+    $element['#prefix'] = $element['#title'] . ': ';
+  }
+  $element['#suffix'] = ', ';
+
+  // No output at all for images.
+  if ($element['#field_type'] == 'image') {
+    $element = array();
+  }
+  return $element;
+}
+
+
+/**
+ * Add a membership fee component.
+ * 
+ * @return array
+ */
+function bp_site_commerce_price_component_type_info() {
+  return array(
+    'membership' => array(
+      'title' => t('Annual Mmbership fee'),
+      'display_title' => t('Annual Membership Fee'),
+      'weight' => 100,
+    ),
+  );
+}
