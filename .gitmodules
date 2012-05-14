@@ -145,3 +145,6 @@
 [submodule "sites/all/modules/reroute_email"]
 	path = sites/all/modules/reroute_email
 	url = git://git.drupal.org/project/reroute_email.git
+[submodule "sites/all/modules/backup_migrate"]
+	path = sites/all/modules/backup_migrate
+	url = git://git.drupal.org/project/backup_migrate.git
