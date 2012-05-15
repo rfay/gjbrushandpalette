@@ -108,6 +108,11 @@ function bp_site_commerce_price_component_type_info() {
       'display_title' => t('Bargain Bin Fee'),
       'weight' => 20,
     ),
+    'secondaryentry' => array(
+      'title' => t('Secondary Entry'),
+      'display_title' => t('Secondary Entry'),
+      'weight' => 20,
+    ),
 
   );
 }
