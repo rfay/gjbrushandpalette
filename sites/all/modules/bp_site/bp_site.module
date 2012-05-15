@@ -103,5 +103,11 @@ function bp_site_commerce_price_component_type_info() {
       'display_title' => t('Annual Membership Fee'),
       'weight' => 100,
     ),
+    'bargainbin' => array(
+      'title' => t('Bargain Bin Fee'),
+      'display_title' => t('Bargain Bin Fee'),
+      'weight' => 20,
+    ),
+
   );
 }
