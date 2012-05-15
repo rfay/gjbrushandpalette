@@ -148,3 +148,6 @@
 [submodule "sites/all/modules/backup_migrate"]
 	path = sites/all/modules/backup_migrate
 	url = git://git.drupal.org/project/backup_migrate.git
+[submodule "sites/all/modules/auto_nodetitle"]
+	path = sites/all/modules/auto_nodetitle
+	url = git://git.drupal.org/project/auto_nodetitle.git
