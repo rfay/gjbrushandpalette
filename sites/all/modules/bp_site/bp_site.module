@@ -99,7 +99,7 @@ function bp_site_pre_render_field($element) {
 function bp_site_commerce_price_component_type_info() {
   return array(
     'membership' => array(
-      'title' => t('Annual Mmbership fee'),
+      'title' => t('Annual Membership fee'),
       'display_title' => t('Annual Membership Fee'),
       'weight' => 100,
     ),
