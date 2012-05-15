@@ -2,10 +2,6 @@
 
 /* Created by Artisteer v3.1.0.48375 */
 
-#art-main {
-   zoom:expression(runtimeStyle.zoom=1,calcWidth=function(o){var p='90%';var min=700;var max=1728;var b=document.body;if(o.w!=b.clientWidth){o.w=b.clientWidth;var w=b.clientWidth/100*parseInt(p);return w < min ? min+'px': w > max ? max+'px':p;}});
-   width:auto;
-}
 #art-page-background-glare{
    display: none;
 }
@@ -36,23 +32,18 @@
    z-index:-2;
    top: 0;
    width:100%;
-   height: 150px;
+   height: 162px;
    background-image: url('images/header.png');
    background-repeat: no-repeat;
    background-position:top center;
 }
 
-div.art-header{
-   width:expression(calcWidth(this));
-}  
 /* end Header */
 
 /* begin Box, Sheet */
 .art-sheet {
    background:#FFFFFF;
-   width:expression(calcWidth(this));
 }
-
 /* end Box, Sheet */
 
 /* begin Menu */

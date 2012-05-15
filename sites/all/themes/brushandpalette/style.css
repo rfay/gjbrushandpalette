@@ -229,7 +229,7 @@ html, body
    position: relative;
    top: 0;
    max-width:577px;
-   min-width: 90%;
+   min-width: 1000px;
    height:92px;
    left: 0;
    margin-right: auto;
@@ -242,7 +242,7 @@ body
 {
    padding: 0;
    margin:0;
-   min-width: 700px;
+   min-width: 1000px;
    color: #34434C;
    background-color: #FCFDFD;
    background-image: url('images/Bottom_texture.jpg');
@@ -394,15 +394,13 @@ body.img_assist
 /* begin Header */
 div.art-header
 {
-   min-width: 700px;
-   max-width: 1728px;
    margin: 0 auto;
    position: relative;
    z-index: -5;
-   width:90%;
-   height: 150px;
-   margin-top: 50px;
-   margin-bottom: 0;
+   width:1000px;
+   height: 162px;
+   margin-top: 45px;
+   margin-bottom: -5px;
 }
 .art-header-position
 {
@@ -416,7 +414,7 @@ div.art-header
 {
    position: relative;
    top:0;
-   width:100%;
+   width:1000px;
    margin:0 auto;
 }
 .art-header-inner 
@@ -425,7 +423,7 @@ div.art-header
    margin: 0 6px;
 }
 
-.art-header-inner:before
+.art-header:before
 {
    position: absolute;
    display:block;
@@ -433,7 +431,7 @@ div.art-header
    z-index:-2;
    top: 0;
    width:100%;
-   height: 150px;
+   height: 162px;
    background-image: url('images/header.png');
    background-repeat: no-repeat;
    background-position:top center;
@@ -446,7 +444,7 @@ div.art-logo
 {
    display: block;
    position: absolute;
-   top: 40px;
+   top: 46px;
    left: 0;
    margin-left: 12px;
 }
@@ -504,12 +502,11 @@ div.art-logo
 /* begin Box, Sheet */
 .art-sheet
 {
+   max-width:1000px;
    margin-top: -5px;
    margin-bottom: -5px;
    cursor:auto;
-   width: 90%;
-   min-width: 700px;
-   max-width: 1728px;
+   width: 1000px;
 }
 .art-sheet-body 
 {
@@ -526,7 +523,7 @@ div.art-logo
    background-image: url('images/sheet_b.png');
 }
 .art-sheet:after{
-   clip:rect(auto, auto, auto, 1702px);
+   clip:rect(auto, auto, auto, 974px);
 }
 .art-sheet:before,.art-sheet-body:before{
    right:26px;
@@ -909,7 +906,7 @@ ul.art-hmenu>li:first-child:before{
 /* begin Box, Block, VMenuBlock */
 .art-vmenublock
 {
-   max-width:1728px;
+   max-width:988px;
    margin: 0;
 }
 .art-vmenublock-body 
@@ -927,7 +924,7 @@ ul.art-hmenu>li:first-child:before{
 /* begin Box, Box, VMenuBlockContent */
 .art-vmenublockcontent
 {
-   max-width:1728px;
+   max-width:988px;
 }
 .art-vmenublockcontent-body 
 {
@@ -1181,7 +1178,7 @@ ul.art-vmenu ul li a:hover, ul.art-vmenu ul li a:hover.active {
 /* begin Box, Block */
 .art-block
 {
-   max-width:1728px;
+   max-width:988px;
    margin: 5px;
 }
 .art-block-body 
@@ -1263,7 +1260,7 @@ div.art-block img
 /* begin Box, BlockContent */
 .art-blockcontent
 {
-   max-width:1728px;
+   max-width:988px;
    width: 100% !important;
 }
 .art-blockcontent-body 
@@ -1406,7 +1403,7 @@ span.art-button-wrapper
    white-space: nowrap;
    text-indent: 0;
    width: auto;
-   max-width:1728px;
+   max-width:988px;
    padding: 0;
    z-index: 0;
    margin: 0 5px 0 0;
@@ -1498,7 +1495,7 @@ span.art-button-wrapper input
 /* begin Box, Post */
 .art-post
 {
-   max-width:1728px;
+   max-width:988px;
    margin: 7px;
 }
 .art-post-body 
