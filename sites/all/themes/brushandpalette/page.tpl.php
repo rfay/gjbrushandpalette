@@ -229,7 +229,6 @@ echo art_get_sidebar($art_sidebar_right, $vnavigation_right, 'art-sidebar2'); ?>
     </div>
 </div>
 <div class="cleared"></div>
-<p class="art-page-footer"><?php echo t('Powered by').' <a href="http://drupal.org/">'.t('Drupal').'</a> '.t('and').' <a href="http://www.artisteer.com/?p=drupal_themes">Drupal Theme</a> '.t('created with').' Artisteer'; ?>.</p>
 
     <div class="cleared"></div>
 </div>
