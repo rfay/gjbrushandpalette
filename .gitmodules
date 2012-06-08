@@ -154,3 +154,6 @@
 [submodule "sites/all/modules/disable_breadcrumbs"]
 	path = sites/all/modules/disable_breadcrumbs
 	url = git://git.drupal.org/project/disable_breadcrumbs.git
+[submodule "sites/all/modules/insert"]
+	path = sites/all/modules/insert
+	url = git://git.drupal.org/project/insert.git
