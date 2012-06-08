@@ -157,3 +157,9 @@
 [submodule "sites/all/modules/insert"]
 	path = sites/all/modules/insert
 	url = git://git.drupal.org/project/insert.git
+[submodule "sites/all/modules/mimemail"]
+	path = sites/all/modules/mimemail
+	url = git://git.drupal.org/project/mimemail.git
+[submodule "sites/all/modules/mailsystem"]
+	path = sites/all/modules/mailsystem
+	url = git://git.drupal.org/project/mailsystem.git
