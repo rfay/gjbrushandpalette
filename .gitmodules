@@ -163,3 +163,6 @@
 [submodule "sites/all/modules/mailsystem"]
 	path = sites/all/modules/mailsystem
 	url = git://git.drupal.org/project/mailsystem.git
+[submodule "sites/all/modules/smtp"]
+	path = sites/all/modules/smtp
+	url = git://git.drupal.org/project/smtp.git
