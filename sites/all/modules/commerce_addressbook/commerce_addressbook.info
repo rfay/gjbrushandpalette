@@ -1,0 +1,5 @@
+name = Commerce Addressbook
+description = Prepopulates and provides a dropdown for previously added addresses.
+package = Commerce (contrib)
+core = 7.x
+dependencies[] = commerce_customer

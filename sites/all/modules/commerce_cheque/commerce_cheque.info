@@ -1,0 +1,7 @@
+; $Id$
+name = Commerce Pay by Cheque
+description = Adds a "Pay by cheque" payment method
+package = Commerce (contrib)
+dependencies[] = commerce
+dependencies[] = commerce_payment
+core = 7.x
