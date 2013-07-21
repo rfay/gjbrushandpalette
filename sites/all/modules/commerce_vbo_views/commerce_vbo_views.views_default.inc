@@ -383,6 +383,46 @@ function commerce_vbo_views_views_default_views() {
   $handler->display->display_options['tab_options']['description'] = 'Manage orders in the store.';
   $handler->display->display_options['tab_options']['weight'] = '';
   $handler->display->display_options['tab_options']['name'] = 'management';
+
+  /* Display: Shopping carts */
+  $handler = $view->new_display('page', 'Shopping carts', 'shopping_carts');
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Commerce Order: Order state */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'commerce_order';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['value'] = array(
+    'cart' => 'cart',
+  );
+  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['label'] = 'Order state';
+  $handler->display->display_options['filters']['state']['expose']['use_operator'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
+  $handler->display->display_options['filters']['state']['expose']['multiple'] = 1;
+  $handler->display->display_options['filters']['state']['expose']['reduce'] = 0;
+  /* Filter criterion: User: Name */
+  $handler->display->display_options['filters']['uid']['id'] = 'uid';
+  $handler->display->display_options['filters']['uid']['table'] = 'users';
+  $handler->display->display_options['filters']['uid']['field'] = 'uid';
+  $handler->display->display_options['filters']['uid']['relationship'] = 'uid';
+  $handler->display->display_options['filters']['uid']['value'] = '';
+  $handler->display->display_options['filters']['uid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['uid']['expose']['operator_id'] = 'uid_op';
+  $handler->display->display_options['filters']['uid']['expose']['label'] = 'Name';
+  $handler->display->display_options['filters']['uid']['expose']['operator'] = 'uid_op';
+  $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
+  $handler->display->display_options['filters']['uid']['expose']['multiple'] = FALSE;
+  $handler->display->display_options['filters']['uid']['expose']['reduce'] = 0;
+  $handler->display->display_options['path'] = 'admin/commerce/orders/carts';
+  $handler->display->display_options['menu']['type'] = 'tab';
+  $handler->display->display_options['menu']['title'] = 'Shopping carts';
+  $handler->display->display_options['menu']['weight'] = '-10';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['tab_options']['title'] = 'Shopping carts';
+  $handler->display->display_options['tab_options']['description'] = 'Manage orders in the store.';
+  $handler->display->display_options['tab_options']['weight'] = '';
+  $handler->display->display_options['tab_options']['name'] = 'management';
   $export['commerce_vbo_views_orders'] = $view;
 
   $view = new view;
@@ -599,7 +639,7 @@ function commerce_vbo_views_views_default_views() {
   $handler->display->display_options['fields']['commerce_customer_address']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['commerce_customer_address']['hide_empty'] = 0;
   $handler->display->display_options['fields']['commerce_customer_address']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['commerce_customer_address']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['commerce_customer_address']['click_sort_column'] = 'name_line';
   $handler->display->display_options['fields']['commerce_customer_address']['settings'] = array(
     'use_widget_handlers' => 0,
     'format_handlers' => array(
@@ -764,32 +804,6 @@ function commerce_vbo_views_views_default_views() {
   $handler->display->display_options['filters']['commerce_customer_address_locality']['expose']['identifier'] = 'commerce_customer_address_locality';
   $handler->display->display_options['filters']['commerce_customer_address_locality']['expose']['required'] = 0;
   $handler->display->display_options['filters']['commerce_customer_address_locality']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Commerce Customer profile: Address (commerce_customer_address:first_name) */
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['id'] = 'commerce_customer_address_first_name';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['table'] = 'field_data_commerce_customer_address';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['field'] = 'commerce_customer_address_first_name';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['operator'] = 'contains';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['group'] = 0;
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['operator_id'] = 'commerce_customer_address_first_name_op';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['label'] = 'Customer First Name';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['operator'] = 'commerce_customer_address_first_name_op';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['identifier'] = 'commerce_customer_address_first_name';
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['commerce_customer_address_first_name']['expose']['multiple'] = FALSE;
-  /* Filter criterion: Commerce Customer profile: Address (commerce_customer_address:last_name) */
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['id'] = 'commerce_customer_address_last_name';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['table'] = 'field_data_commerce_customer_address';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['field'] = 'commerce_customer_address_last_name';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['operator'] = 'contains';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['group'] = 0;
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['operator_id'] = 'commerce_customer_address_last_name_op';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['label'] = 'Customer Last Name';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['operator'] = 'commerce_customer_address_last_name_op';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['identifier'] = 'commerce_customer_address_last_name';
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['required'] = 0;
-  $handler->display->display_options['filters']['commerce_customer_address_last_name']['expose']['multiple'] = FALSE;
   /* Filter criterion: Commerce Customer Profile: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'commerce_customer_profile';
@@ -815,6 +829,18 @@ function commerce_vbo_views_views_default_views() {
   $handler->display->display_options['filters']['uid']['expose']['identifier'] = 'uid';
   $handler->display->display_options['filters']['uid']['expose']['multiple'] = FALSE;
   $handler->display->display_options['filters']['uid']['expose']['reduce'] = 0;
+  /* Filter criterion: Commerce Customer profile: Address (commerce_customer_address:name_line) */
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['id'] = 'commerce_customer_address_name_line';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['table'] = 'field_data_commerce_customer_address';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['field'] = 'commerce_customer_address_name_line';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['operator'] = 'contains';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['operator_id'] = 'commerce_customer_address_name_line_op';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['label'] = 'Customer Name (first or last)';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['operator'] = 'commerce_customer_address_name_line_op';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['identifier'] = 'commerce_customer_address_name_line';
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['required'] = 0;
+  $handler->display->display_options['filters']['commerce_customer_address_name_line']['expose']['multiple'] = FALSE;
 
   /* Display: Admin page */
   $handler = $view->new_display('page', 'Admin page', 'page_1');

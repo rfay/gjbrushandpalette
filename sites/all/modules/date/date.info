@@ -9,3 +9,10 @@ files[] = tests/date.test
 files[] = tests/date_field.test
 files[] = tests/date_validation.test
 files[] = tests/date_timezone.test
+
+; Information added by drupal.org packaging script on 2012-08-13
+version = "7.x-2.6"
+core = "7.x"
+project = "date"
+datestamp = "1344850024"
+

@@ -4,3 +4,10 @@ dependencies[] = stringoverrides
 core = 7.x
 files[] = stringoverrides_migrate.module
 files[] = stringoverrides_migrate.admin.inc
+
+; Information added by drupal.org packaging script on 2011-05-03
+version = "7.x-1.8"
+core = "7.x"
+project = "stringoverrides"
+datestamp = "1304446316"
+

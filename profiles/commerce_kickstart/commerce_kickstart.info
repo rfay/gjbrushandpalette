@@ -2,6 +2,8 @@ name = Commerce Kickstart
 description = Install with Drupal Commerce pre-configured for use.
 core = 7.x
 distribution_name = Drupal Commerce
+project = commerce_kickstart
+version = 1.x-dev
 
 ; Developers can feel free to invert the comments below to install modules that
 ; aid in module development.
@@ -10,6 +12,7 @@ dependencies[] = toolbar
 ; dependencies[] = simpletest
 ; dependencies[] = devel
 ; dependencies[] = admin_menu
+; dependencies[] = admin_menu_toolbar
 
 ; Install necessary core modules.
 dependencies[] = block
@@ -67,3 +70,10 @@ dependencies[] = commerce_tax
 dependencies[] = commerce_tax_ui
 
 files[] = commerce_kickstart.profile
+
+; Information added by drupal.org packaging script on 2013-05-08
+version = "7.x-1.19"
+core = "7.x"
+project = "commerce_kickstart"
+datestamp = "1368024311"
+

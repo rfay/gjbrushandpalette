@@ -80,6 +80,7 @@ function commerce_kickstart_example_store_form_submit(&$form, &$form_state) {
       $product = commerce_product_new('product');
       $product->sku = 'PROD-' . $sku;
       $product->title = $title;
+      $product->language = LANGUAGE_NONE;
       $product->uid = 1;
 
       // Set a default price.
@@ -100,6 +101,9 @@ function commerce_kickstart_example_store_form_submit(&$form, &$form_state) {
 
         // Reference the product we just made.
         $node->field_product[LANGUAGE_NONE][]['product_id'] = $product->product_id;
+
+        // Make sure we set the default language
+        $node->language = LANGUAGE_NONE;
 
         // Save it and retain a copy.
         node_save($node);
@@ -270,4 +274,50 @@ function _commerce_kickstart_create_product_reference($entity_type, $bundle, $fi
     ),
   );
   field_create_instance($instance);
+}
+
+/**
+ * Implements hook_update_projects_alter().
+ */
+function commerce_kickstart_update_projects_alter(&$projects) {
+  // Enable update status for the Commerce Kickstart profile.
+  $modules = system_rebuild_module_data();
+  // The module object is shared in the request, so we need to clone it here.
+  $kickstart = clone $modules['commerce_kickstart'];
+  $kickstart->info['hidden'] = FALSE;
+  _update_process_info_list($projects, array('commerce_kickstart' => $kickstart), 'module', TRUE);
+}
+
+/**
+ * Implements hook_update_status_alter().
+ *
+ * Disable reporting of modules that are in the distribution, but only
+ * if they have not been updated manually. In addition, we only hide security
+ * issues if the distribution itself has not been updated.
+ */
+function commerce_kickstart_update_status_alter(&$projects) {
+  $distribution_secure = !in_array($projects['commerce_kickstart']['status'], array(UPDATE_NOT_SECURE, UPDATE_REVOKED, UPDATE_NOT_SUPPORTED));
+  $make_filepath = drupal_get_path('module', 'commerce_kickstart') . '/drupal-org.make';
+  if (!file_exists($make_filepath)) {
+    return;
+  }
+  $make_info = drupal_parse_info_file($make_filepath);
+  foreach ($projects as $project_name => $project_info) {
+    if (!isset($project_info['info']['version']) || !isset($make_info['projects'][$project_name])) {
+      // Don't hide a project that is not shipped with the distribution.
+      continue;
+    }
+    if ($distribution_secure && in_array($project_info['status'], array(UPDATE_NOT_SECURE, UPDATE_REVOKED, UPDATE_NOT_SUPPORTED))) {
+      // Don't hide a project that is in a security state if the distribution
+      // is not in a security state.
+      continue;
+    }
+    $make_project_version = is_array($make_info['projects'][$project_name]) ? $make_info['projects'][$project_name]['version'] : $make_info['projects'][$project_name];
+
+    // Current version matches the version we shipped, remove it from the list.
+    if (DRUPAL_CORE_COMPATIBILITY . '-' . $make_project_version == $project_info['info']['version']) {
+      $projects['commerce_kickstart']['includes'][$project_info['name']] = $project_info['info']['name'];
+      unset($projects[$project_name]);
+    }
+  }
 }
