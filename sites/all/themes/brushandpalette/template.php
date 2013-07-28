@@ -9,6 +9,83 @@ if (isset($language)) {
 	$language->direction = LANGUAGE_LTR;
 }
 
+
+/**
+ * Minor replacement of hook_form_element() intended to place the #description
+ * before the form element.
+ * 
+ * @param $variables
+ * @return string
+ */
+function brushandpalette_form_element($variables) {
+  $element = & $variables['element'];
+
+  // This function is invoked as theme wrapper, but the rendered form element
+  // may not necessarily have been processed by form_builder().
+  $element += array(
+    '#title_display' => 'before',
+  );
+
+  // Add element #id for #type 'item'.
+  if (isset($element['#markup']) && !empty($element['#id'])) {
+    $attributes['id'] = $element['#id'];
+  }
+  // Add element's #type and #name as class to aid with JS/CSS selectors.
+  $attributes['class'] = array('form-item');
+  if (!empty($element['#type'])) {
+    $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
+  }
+  if (!empty($element['#name'])) {
+    $attributes['class'][] = 'form-item-' . strtr($element['#name'], array(
+      ' ' => '-',
+      '_' => '-',
+      '[' => '-',
+      ']' => ''
+    ));
+  }
+  // Add a class for disabled elements to facilitate cross-browser styling.
+  if (!empty($element['#attributes']['disabled'])) {
+    $attributes['class'][] = 'form-disabled';
+  }
+  $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
+
+  // If #title is not set, we don't display any label or required marker.
+  if (!isset($element['#title'])) {
+    $element['#title_display'] = 'none';
+  }
+  $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . $element['#field_prefix'] . '</span> ' : '';
+  $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
+
+  $description = "";
+  if (!empty($element['#description'])) {
+    $description = '<div class="description">' . $element['#description'] . "</div>\n";
+  }
+
+  switch ($element['#title_display']) {
+    case 'before':
+    case 'invisible':
+      $output .= ' ' . theme('form_element_label', $variables) . $description;
+      $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
+      break;
+
+    case 'after':
+      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix;
+      $output .= ' ' . theme('form_element_label', $variables) . "\n";
+      break;
+
+    case 'none':
+    case 'attribute':
+      // Output no label and no required marker, only the children.
+      $output .= ' ' . $prefix . $description . $element['#children'] . $suffix . "\n";
+      break;
+  }
+
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
 switch (get_drupal_major_version()) {
 	case 5:
 	  require_once("drupal5_theme_methods.php");
@@ -25,7 +102,7 @@ switch (get_drupal_major_version()) {
 
 /* Common methods */
 
-function get_drupal_major_version() {	
+function get_drupal_major_version() {
 	$tok = strtok(VERSION, '.');
 	//return first part of version number
 	return (int)$tok[0];
@@ -37,7 +114,7 @@ function get_page_language($language) {
 }
 
 function get_page_direction($language) {
-  if (isset($language) && isset($language->dir)) { 
+  if (isset($language) && isset($language->dir)) {
 	  return 'dir="'.$language->dir.'"';
   }
   return 'dir="'.ltr.'"';
@@ -63,8 +140,10 @@ if (!function_exists('render'))	{
 	}
 }
 
+
+
 class artx_view_drupal56 {
-	
+
 	function print_head($vars) {
 		foreach (array_keys($vars) as $name)
 			$$name = & $vars[$name];
@@ -73,10 +152,10 @@ class artx_view_drupal56 {
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo get_page_language($language); ?>" xml:lang="<?php echo get_page_language($language); ?>" <?php echo get_page_direction($language); ?> >
 <head>
   <?php echo $head; ?>
-  <title><?php if (isset($head_title )) { echo $head_title; } ?></title>  
+  <title><?php if (isset($head_title )) { echo $head_title; } ?></title>
   <?php echo $styles ?>
   <?php echo $scripts ?>
-  <!--[if IE 6]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->  
+  <!--[if IE 6]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->
   <!--[if IE 7]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie7.css" type="text/css" media="screen" /><![endif]-->
   <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
 </head>
@@ -102,10 +181,10 @@ class artx_view_drupal56 {
 <html xmlns="http://www.w3.org/1999/xhtml" lang="<?php echo get_page_language($language); ?>" xml:lang="<?php echo get_page_language($language); ?>" <?php echo get_page_direction($language); ?> >
 <head>
   <?php echo $head; ?>
-  <title><?php if (isset($head_title )) { echo $head_title; } ?></title>  
+  <title><?php if (isset($head_title )) { echo $head_title; } ?></title>
   <?php echo $styles ?>
   <?php echo $scripts ?>
-  <!--[if IE 6]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->  
+  <!--[if IE 6]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->
   <!--[if IE 7]><link rel="stylesheet" href="<?php echo $base_path . $directory; ?>/style.ie7.css" type="text/css" media="screen" /><![endif]-->
   <script type="text/javascript"><?php /* Needed to avoid Flash of Unstyle Content in IE */ ?> </script>
 </head>
@@ -113,7 +192,7 @@ class artx_view_drupal56 {
 <body <?php if (!empty($body_classes)) { echo 'class="'.$body_classes.'"'; } ?>>
 <?php
 	}
-	
+
 	function print_maintenance_closure($vars) {
 		echo $vars['closure'];
 ?>
@@ -182,12 +261,13 @@ class artx_view_drupal56 {
 }
 
 
+
 class artx_view_drupal7 {
 
 	function print_head($vars) {
 		print render($vars['page']['header']);
 	}
-	
+
 	function print_closure($vars) {
 		return;
 	}
@@ -204,13 +284,13 @@ class artx_view_drupal7 {
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
-  <!--[if IE 6]><link rel="stylesheet" href="<?php echo base_path() . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->  
+  <!--[if IE 6]><link rel="stylesheet" href="<?php echo base_path() . $directory; ?>/style.ie6.css" type="text/css" media="screen" /><![endif]-->
   <!--[if IE 7]><link rel="stylesheet" href="<?php echo base_path() . $directory; ?>/style.ie7.css" type="text/css" media="screen" /><![endif]-->
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
 <?php
 	}
-	
+
 	function print_maintenance_closure($vars) {
 ?>
 </body>
@@ -291,14 +371,14 @@ class artx_view_drupal7 {
 <div class="art-post-inner art-article">
 
 <div class="art-postcontent">
-	
+
 <?php
 		echo $comments;
 ?>
 
 	</div>
 	<div class="cleared"></div>
-	
+
 
 </div>
 
